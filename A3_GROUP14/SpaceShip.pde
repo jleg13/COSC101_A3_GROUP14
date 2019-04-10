@@ -55,19 +55,24 @@ class SpaceShip
   }
   
   /*
-  Method to update the movement of the ship
+  Method to control the ships motion according to key events
+  and monitor edge detection
+  @PARAMS: boolean array
   */
-  void moveShip()
+  void updateShip(boolean[] keypress)
   {
-   
-  }
-  
-   /*
-  This method monitors the ships location and wraps the object to re 
-  enter the opposite side of screen of the screen.
-  */
-  void shipEdgeDetect()
-  {
+    if(keypress[LEFT])
+    {
+    }
+    if(keypress[RIGHT])
+    {
+    }
+    if(keypress[UP]) 
+    {
+    }
+    if(keypress[DOWN])   
+    {
+    }
     if(shipLocation.x < - delay )
     {
       shipLocation.x = width + delay;
@@ -83,26 +88,6 @@ class SpaceShip
     else if (shipLocation.y > height + delay)
     {
       shipLocation.y = 0 - delay;
-    }
-  }
-  
-  /*
-  Method to control the ships motion according to key events
-  @PARAMS: boolean array
-  */
-  void controlShip(boolean[] keypress)
-  {
-    if(keypress[LEFT])
-    {
-    }
-    if(keypress[RIGHT])
-    {
-    }
-    if(keypress[UP]) 
-    {
-    }
-    if(keypress[DOWN])   
-    {
     }
   }
   

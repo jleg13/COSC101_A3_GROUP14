@@ -58,23 +58,12 @@ class Asteroid
   }
   
   /*
-  Method to update the asteroids motion.
+  This method controls the Asteroids motion. Firstly it monitors the 
+  asteroids location and wraps the objects to re enter the opposite side
+  of screen of the screen. Then adds the acceleration and velocity PVectors
+  to the location.
   */
-  void moveAsteroid()
-  {
-    // Velocity changes according to acceleration
-    asteroidVelocity.add(asteroidAcceleration);
-    // Limit the velocity by topspeed
-    asteroidVelocity.limit(topspeed);
-    // Location changes by velocity
-    asteroidLocation.add(asteroidVelocity);
-  }
-  
-  /*
-  This method monitors the asteroids location and wraps the objects to re 
-  enter the opposite side of screen of the screen.
-  */
-  void edgeDetect()
+  void updateAsteroid()
   {
     if(asteroidLocation.x < - delay )
     {
@@ -92,6 +81,13 @@ class Asteroid
     {
       asteroidLocation.y = 0 - delay;
     }
+    
+    // Velocity changes according to acceleration
+    asteroidVelocity.add(asteroidAcceleration);
+    // Limit the velocity by topspeed
+    asteroidVelocity.limit(topspeed);
+    // Location changes by velocity
+    asteroidLocation.add(asteroidVelocity);
   }
   
   /*

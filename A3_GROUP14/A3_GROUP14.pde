@@ -195,8 +195,7 @@ class AsteroidGame
       if(!myAsteroids.get(i).hit)
       {
         // access each Asteroid objects methods to control movement
-        myAsteroids.get(i).moveAsteroid();
-        myAsteroids.get(i).edgeDetect();
+        myAsteroids.get(i).updateAsteroid();
         // add an image to the current location
         myAsteroids.get(i).displayAsteroid();
       }
@@ -210,9 +209,7 @@ class AsteroidGame
   {
     if(startAsteroids)
     {
-      mySpaceShip.moveShip();
-      mySpaceShip.shipEdgeDetect();
-      mySpaceShip.controlShip(keyIsPressed);
+      mySpaceShip.updateShip(keyIsPressed);
       mySpaceShip.displayShip();
       mySpaceShip.addShot(keyIsPressed);
       mySpaceShip.updateShot();
