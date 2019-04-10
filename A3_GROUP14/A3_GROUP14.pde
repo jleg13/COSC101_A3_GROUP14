@@ -48,7 +48,6 @@ relevent direction. Collision detection is monitored.
 class AsteroidGame
 {
   Asteroid oneAsteroid;              // declare Asteroid object
-  Timer myTimer;                     // declare Timer object
   SpaceShip mySpaceShip;             // declare SpaceShip object
   Menu myMenu;                       // declare Menu object
   UFO myUFO;                         // declare UFO object
@@ -71,7 +70,8 @@ class AsteroidGame
         
   int score,                         // number of asteroids destroyed.
       totalAsteroids,                // total number of asteroid objects to create.
-      totalTime,                     // tome accumulator
+      startTime,                     // stores the millisecond starting point of timer
+      totalTime,                     // time accumulator
       timeGap;                       // sets an asteroid every 5 secs
 
   /*
@@ -80,7 +80,6 @@ class AsteroidGame
   AsteroidGame()
   {
     // Instantiate objects
-    myTimer = new Timer();
     mySpaceShip = new SpaceShip();
     myMenu = new Menu();
     myHighScores = new HighScores();
@@ -106,7 +105,8 @@ class AsteroidGame
     
     // set integer variables
     score = 0;                    
-    totalAsteroids = 10;         
+    totalAsteroids = 10;   
+    startTime = 0;
     totalTime = 0;            
     timeGap = 500; 
     
@@ -165,18 +165,18 @@ class AsteroidGame
       if(myAsteroids.size() < 1)
       {
          myAsteroids.add(oneAsteroid = new Asteroid());
-         myTimer.startTimer();
+         startTime = millis();
       }
-      // after the first they are created by the timeGap interval
+      // after the first the objects are created by the timeGap interval
       else
       {
-        int split = myTimer.endTimer();
+        int split = (millis() - startTime)/1000;
         totalTime += split;
         if(myAsteroids.size() < totalAsteroids && totalTime > timeGap)
         {
           myAsteroids.add(oneAsteroid = new Asteroid());
           totalTime = 0;
-          myTimer.startTimer();
+          startTime = millis();
         }
       }
     }
